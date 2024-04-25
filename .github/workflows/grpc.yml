@@ -1,0 +1,41 @@
+name: Build bindings for Linux、macos、windows releases
+
+on: [push]
+
+jobs: 
+  build-x64:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        arch: [ x64 ]
+        node: [ 18 ]
+
+    runs-on: ${{ matrix.os }}
+
+    env:
+      ARCH: ${{matrix.arch}}
+      VERSION: ${{matrix.node}}.0.0
+      RUNTIME: node
+      LIBC: glibc
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+        if: ${{matrix.os == 'windows-latest'}}
+
+      - name: Build
+        run: grpc/${{matrix.os}}-build.sh
+        if: ${{matrix.os != 'windows-latest'}}
+
+      - name: Build
+        run: grpc/${{matrix.os}}-build.bat
+        if: ${{matrix.os == 'windows-latest'}}
+
