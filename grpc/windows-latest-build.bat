@@ -1,8 +1,6 @@
 
 @echo "Starting Windows build"
 
-call npm install -g yarn
-
 echo "开始编译二进制文件"
 
 # 上传多个版本的二进制到私仓

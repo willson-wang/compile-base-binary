@@ -9,13 +9,13 @@ jobs:
       matrix:
         os: [windows-latest]
         arch: [ x64 ]
-        node: [ 18 ]
+        node: [ 18.19.0 ]
 
     runs-on: ${{ matrix.os }}
 
     env:
       ARCH: ${{matrix.arch}}
-      VERSION: ${{matrix.node}}.0.0
+      VERSION: ${{matrix.node}}
       RUNTIME: node
       LIBC: glibc
 
