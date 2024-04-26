@@ -14,6 +14,8 @@ call node modifyNodePreGyp.js || goto :error
 # 进入 grpc 的目录
 cd .\node_modules\grpc
 
+call yarn run install || goto :error
+
 ls .
 
 :success
