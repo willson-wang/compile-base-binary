@@ -5,6 +5,7 @@ echo "开始编译二进制文件"
 
 call npm config set msvs-version 2022 || goto :error
 call npm config set msvs_version 2022 || goto :error
+call echo 'GYP_MSVS_VERSION=2022' >> $Env:GITHUB_ENV || goto :error
 
 call npm config list || goto :error
 
