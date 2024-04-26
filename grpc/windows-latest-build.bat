@@ -3,8 +3,7 @@
 
 echo "开始编译二进制文件"
 
-call choco install visualstudio2022-workload-vctools -y || goto :error
-
+npm config set msvs-version 2022
 
 # 上传多个版本的二进制到私仓
 rmdir node_modules
