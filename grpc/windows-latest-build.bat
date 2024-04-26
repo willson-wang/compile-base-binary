@@ -7,10 +7,12 @@ echo "开始编译二进制文件"
 rmdir node_modules
 
 # 安装 grpc，如果二进制不存在，则会走编译流程
-call yarn add grpc@1.24.11 || goto :error
+call yarn add @mapbox/node-pre-gyp grpc@1.24.11 --ignore-scripts || goto :error
+
+call node modifyNodePreGyp.js || goto :error
 
 # 进入 grpc 的目录
-cd .\node_modules\grpc\src\node\extension_binary
+cd .\node_modules\grpc
 
 ls .
 
