@@ -3,6 +3,7 @@
 
 echo "开始编译二进制文件"
 
+call npm install -g node-gyp@latest || goto :error
 call node-gyp --version || goto :error
 
 call npm config set msvs-version 2022 || goto :error
