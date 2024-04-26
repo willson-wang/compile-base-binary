@@ -3,7 +3,7 @@
 
 echo "开始编译二进制文件"
 
-npm config set msvs-version 2022
+call npm config set msvs-version 2022 || goto :error
 
 # 上传多个版本的二进制到私仓
 rmdir node_modules
