@@ -19,7 +19,8 @@ call yarn add @mapbox/node-pre-gyp grpc@1.24.11 --ignore-scripts || goto :error
 # 进入 grpc 的目录
 cd .\node_modules\grpc
 
-call yarn node-pre-gyp install --library=static_library --build-from-source || goto :error
+@REM call yarn node-pre-gyp install --library=static_library --build-from-source || goto :error
+call yarn node-pre-gyp configure build package --target=%VERSION% --target_arch=%ARCH% --runtime=%RUNTIME% && goto :success
 
 cd .\src\node\extension_binary\node-v93-win32-x64-unknown
 
