@@ -13,4 +13,4 @@ json['18.13.0'] = {
 
 fs.writeFileSync(jsonPath, JSON.stringify(json, null, 2))
 
-console.log(fs.readFileSync(jsonPath, 'utf-8'))
+console.log(JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))['18.13.0'])
